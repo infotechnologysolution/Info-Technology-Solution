@@ -12,17 +12,16 @@
     section { padding: 20px; }
     .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
     .service-box { border: 1px solid #ccc; border-radius: 8px; padding: 15px; }
-    footer { background: #aaa
-; color: black; text-align: center; padding: 15px; margin-top: 20px; }
+    footer { background: #aaa; color: black; text-align: center; padding: 15px; margin-top: 20px; }
   </style>
 </head>
 <body>
   <header style="text-align: center; padding: 30px 20px; background-color: black;">
-  <img src="images/logo.png" alt="Company Logo" style="height: 100px; margin-bottom: 10px;">
+  <img src="https://i.ibb.co/TxDFhZ8N/Logo-Without-name.png" alt="work photo" style="height: 200px; width: auto; display: block; margin: 0 auto;"/>
   <h1 style="color: white; margin: 0;">Info Technology Solution</h1>
   <p style="color: #aaa; margin: 5px 0 0;">in Qatar</p>
   </div>
-   <div>
+ <div>
   <img src="https://gallery.yopriceville.com/var/resizes/National-Flags/Qatar_Large_Flag.png?m=1629833975" alt="Qatar Flag" style="height: 40px; margin-right: 5px;">
   <img src="https://flagcdn.com/w40/bd.png" alt="Bangladesh Flag" style="height: 40px;">
 </div>
@@ -38,9 +37,119 @@
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </nav>
+ 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .search-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .search-bar {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .product {
+            background-color: white;
+            margin: 15px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .product p {
+            margin: 10px 0 0;
+        }
+    </style>
+</head>
+<body>
 
+<header>
+    <h1 style="font-size: 25px; margin: 5px 0;">Product Search</h1>
+</header>
+
+<div class="search-container">
+    <input type="text" id="search-bar" class="search-bar" placeholder="Search for products (e.g., CCTV, Access Control)">
+    <button onclick="searchProducts()">Search</button>
+</div>
+
+<div class="products" id="product-list">
+    <!-- Products will be shown here after search -->
+</div>
+
+<script>
+    const products = [
+        { name: 'CCTV Camera', category: 'CCTV', image:src="https://i.ibb.co/xqCn79f2/Hikvision-DS-2-CE76-D0-T-EXIPF-2-MP-Indoor-Fixed-Turret-Camera.jpg" },
+        { name: 'Access Control System', category: 'Access Control', image: src="https://i.ibb.co/JjRbdZTZ/SF100-01-80849.webp" },
+        { name: 'PABX System', category: 'PABX', image: src="https://i.ibb.co/8gDw7B6M/hq720.jpg" },
+        { name: 'Fire Alarm System', category: 'Fire Alarm', image: src="https://i.ibb.co/TxsvnDw7/Conventional-Hazardous-Area-Detection.png" }
+    ];
+
+    function searchProducts() {
+        const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+        const filteredProducts = products.filter(product => 
+            product.name.toLowerCase().includes(searchQuery) || 
+            product.category.toLowerCase().includes(searchQuery)
+        );
+        
+        displayProducts(filteredProducts);
+    }
+
+    function displayProducts(filteredProducts) {
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = ''; // Clear current products
+
+        if (filteredProducts.length > 0) {
+            filteredProducts.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <p>${product.name}</p>
+                    <p>${product.category}</p>
+                `;
+                productList.appendChild(productDiv);
+            });
+        } else {
+            productList.innerHTML = '<p>No products found.</p>';
+        }
+    }
+</script>
+
+
+
+</body> 
+
+</div>
   <section id="services">
-    <h2>Our Services</h2>
+     <h2>Our Services</h2>
     <div class="services">
       <div class="service-box">
         <h3>CCTV Camera Installation</h3>
@@ -66,8 +175,7 @@
   </section>
 
   <section id="about">
-    <h2>About Us</h2>
-   <h2>About Us / من نحن</h2>
+    <h2>About Us / من نحن</h2>
   <p>
     <strong>Info Technology Solution</strong> is your reliable partner in smart security and IT systems in Qatar.
     We provide professional CCTV installation, access control, networking, PABX, and fire alarm services for homes and businesses.
@@ -87,7 +195,7 @@
   
    <section id="gallery">
     <h2>Project Gallery</h2>
-    <p>(Upload images of your past work here)</p>
+    <img src="https://i.ibb.co/1GwygqnN/S585db4439b6c4e09b712fa465d65d2f8-N.jpg" alt="work photo" style="height: 120px; width: auto;border-radius: 8px; display: block; margin: 0 0;" />
   </section>
 
   <section id="contact">
