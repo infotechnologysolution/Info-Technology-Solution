@@ -95,55 +95,54 @@
     <h1 style="font-size: 25px; margin: 5px 0;">Product Search</h1>
 </header>
 
-<div class="search-container">
-    <input type="text" id="search-bar" class="search-bar" placeholder="Search for products (e.g., CCTV, Access Control)">
-    <button onclick="searchProducts()">Search</button>
+
+<div style="text-align: center; margin: 20px 0;">
+  <input type="text" id="searchInput" placeholder="Search here..." onkeypress="handleKeyPress(event)">
+  <button onclick="performSearch()">Search</button>
 </div>
 
-<div class="products" id="product-list">
-    <!-- Products will be shown here after search -->
-</div>
+<div id="searchResults" style="text-align: center; margin-top: 20px;"></div>
 
 <script>
-    const products = [
-        { name: 'CCTV Camera', category: 'CCTV', image:src="https://i.ibb.co/xqCn79f2/Hikvision-DS-2-CE76-D0-T-EXIPF-2-MP-Indoor-Fixed-Turret-Camera.jpg" },
-        { name: 'Access Control System', category: 'Access Control', image: src="https://i.ibb.co/JjRbdZTZ/SF100-01-80849.webp" },
-        { name: 'PABX System', category: 'PABX', image: src="https://i.ibb.co/8gDw7B6M/hq720.jpg" },
-        { name: 'Fire Alarm System', category: 'Fire Alarm', image: src="https://i.ibb.co/TxsvnDw7/Conventional-Hazardous-Area-Detection.png" }
-    ];
+function handleKeyPress(event) {
+  if (event.key === "Enter") {
+    performSearch();
+  }
+}
 
-    function searchProducts() {
-        const searchQuery = document.getElementById('search-bar').value.toLowerCase();
-        const filteredProducts = products.filter(product => 
-            product.name.toLowerCase().includes(searchQuery) || 
-            product.category.toLowerCase().includes(searchQuery)
-        );
-        
-        displayProducts(filteredProducts);
+function performSearch() {
+  var query = document.getElementById("searchInput").value.toLowerCase().trim();
+  var resultsDiv = document.getElementById("searchResults");
+  resultsDiv.innerHTML = ""; // Clear old results
+
+  if (query === "") {
+    alert("Please type something to search.");
+    return;
+  }
+
+  let results = {
+    "cctv": src="https://i.ibb.co/xqCn79f2/Hikvision-DS-2-CE76-D0-T-EXIPF-2-MP-Indoor-Fixed-Turret-Camera.jpg",
+    "fire": src="https://i.ibb.co/TxsvnDw7/Conventional-Hazardous-Area-Detection.png",
+    "access": src="https://i.ibb.co/JjRbdZTZ/SF100-01-80849.webp",
+    "pabx": "https://i.ibb.co/8gDw7B6M/hq720.jpg",
+    "network": src="https://i.ibb.co/vStkTPg/computer-networking-service.jpg" 
+  };
+
+  let found = false;
+
+  for (let key in results) {
+    if (query.includes(key)) {
+      resultsDiv.innerHTML = `<img src="${results[key]}" alt="${key}" style="max-width: 300px;">`;
+      found = true;
+      break;
     }
+  }
 
-    function displayProducts(filteredProducts) {
-        const productList = document.getElementById('product-list');
-        productList.innerHTML = ''; // Clear current products
-
-        if (filteredProducts.length > 0) {
-            filteredProducts.forEach(product => {
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('product');
-                productDiv.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
-                    <p>${product.name}</p>
-                    <p>${product.category}</p>
-                `;
-                productList.appendChild(productDiv);
-            });
-        } else {
-            productList.innerHTML = '<p>No products found.</p>';
-        }
-    }
+  if (!found) {
+    resultsDiv.innerHTML = "<p>No results found.</p>";
+  }
+}
 </script>
-
-
 
 </body> 
 
